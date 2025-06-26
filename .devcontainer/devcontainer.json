@@ -40,8 +40,15 @@
 
   // ## Environment
   "remoteUser": "developer",
+  "forwardPorts": [4321],
+  "portsAttributes": {
+    "4321": {
+      "label": "Astro Dev Server",
+      "onAutoForward": "notify"
+    }
+  },
 
   // ## Container Command
   "overrideCommand": true,
-  "postCreateCommand": "sudo chown -R $USER:$USER ${containerWorkspaceFolder}"
+  "postCreateCommand": "sudo chown -R $USER:$USER ${containerWorkspaceFolder} && npm i && npm i -D"
 }
