@@ -1,0 +1,8 @@
+## 
+## Resolve Git line ending issues in WSL
+## cf. https://github.com/microsoft/vscode-dev-containers/blob/main/.gitattributes
+## 
+
+* text=auto eol=lf
+*.{cmd,[cC][mM][dD]} text eol=crlf
+*.{bat,[bB][aA][tT]} text eol=crlf
