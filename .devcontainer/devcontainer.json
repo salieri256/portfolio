@@ -15,6 +15,11 @@
       "type": "bind",
       "source": "${localWorkspaceFolder}",
       "target": "${containerWorkspaceFolder}"
+    },
+    {
+      "type": "volume",
+      "source": "${localWorkspaceFolderBasename}_node_modules",
+      "target": "${containerWorkspaceFolder}/node_modules"
     }
   ],
   "features": {
@@ -27,7 +32,10 @@
       "installOhMyZsh": true,
       "upgradePackages": true
     },
-    "ghcr.io/devcontainers/features/git:1": {}
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "23.11.0"
+    }
   },
 
   // ## Environment
