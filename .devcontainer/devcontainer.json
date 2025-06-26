@@ -1,0 +1,54 @@
+{
+  // # devcontainer.json - salieri256's portfolio
+  // ## To Create Image
+  "name": "salieri256's portfolio",
+  "workspaceFolder": "/home/developer/workspace",
+  "shutdownAction": "stopCompose",
+
+  // ## From Base Image
+  "dockerComposeFile": "./compose.yaml",
+  "service": "ubuntu",
+
+  // ## Resources
+  "mounts": [
+    {
+      "type": "bind",
+      "source": "${localWorkspaceFolder}",
+      "target": "${containerWorkspaceFolder}"
+    },
+    {
+      "type": "volume",
+      "source": "${localWorkspaceFolderBasename}_node_modules",
+      "target": "${containerWorkspaceFolder}/node_modules"
+    }
+  ],
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "username": "developer",
+      "userUid": "1001",
+      "userGid": "1001",
+      "configureZshAsDefaultShell": true,
+      "installZsh": true,
+      "installOhMyZsh": true,
+      "upgradePackages": true
+    },
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "23.11.0"
+    }
+  },
+
+  // ## Environment
+  "remoteUser": "developer",
+  "forwardPorts": [4321],
+  "portsAttributes": {
+    "4321": {
+      "label": "Astro Dev Server",
+      "onAutoForward": "notify"
+    }
+  },
+
+  // ## Container Command
+  "overrideCommand": true,
+  "postCreateCommand": "sudo chown -R $USER:$USER ${containerWorkspaceFolder} && npm i && npm i -D"
+}
