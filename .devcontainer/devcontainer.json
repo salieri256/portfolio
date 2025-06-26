@@ -1,0 +1,39 @@
+{
+  // # devcontainer.json - salieri256's portfolio
+  // ## To Create Image
+  "name": "salieri256's portfolio",
+  "workspaceFolder": "/home/developer/workspace",
+  "shutdownAction": "stopCompose",
+
+  // ## From Base Image
+  "dockerComposeFile": "./compose.yaml",
+  "service": "ubuntu",
+
+  // ## Resources
+  "mounts": [
+    {
+      "type": "bind",
+      "source": "${localWorkspaceFolder}",
+      "target": "${containerWorkspaceFolder}"
+    }
+  ],
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "username": "developer",
+      "userUid": "1001",
+      "userGid": "1001",
+      "configureZshAsDefaultShell": true,
+      "installZsh": true,
+      "installOhMyZsh": true,
+      "upgradePackages": true
+    },
+    "ghcr.io/devcontainers/features/git:1": {}
+  },
+
+  // ## Environment
+  "remoteUser": "developer",
+
+  // ## Container Command
+  "overrideCommand": true,
+  "postCreateCommand": "sudo chown -R $USER:$USER ${containerWorkspaceFolder}"
+}

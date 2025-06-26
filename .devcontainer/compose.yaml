@@ -1,0 +1,8 @@
+services:
+  ubuntu:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    hostname: ubuntu
+    env_file:
+      - devcontainer.env
