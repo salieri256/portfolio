@@ -1,5 +1,7 @@
-import { PerspectiveCamera, Text } from "@react-three/drei";
+import { Loader, PerspectiveCamera, Text } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
+import { CircleGeometry, TextureLoader } from "three";
+import myIcon from "@/assets/icon.jpg"
 
 export default function ReactFiber() {
   const handleGitHubClick = () => {
@@ -18,27 +20,50 @@ export default function ReactFiber() {
     window.document.body.style.cursor = "auto"
   }
 
+  const textureLoader = new TextureLoader()
+  const iconTexture = textureLoader.load(myIcon.src)
+  new CircleGeometry()
+
   return (
-    <Canvas>
-      <PerspectiveCamera
-        makeDefault
-        position={[0, -2, 40]}
-        lookAt={(x, y, z) => {}} />
-      <Text>Portfolio | salieri256</Text>
-      <Text
-        position={[0, -2, 0]}
-        onClick={handleGitHubClick}
-        onPointerEnter={handlePointerEnter}
-        onPointerLeave={handlePointerLeave}>
-        GitHub
-      </Text>
-      <Text
-        position={[0, -4, 0]}
-        onClick={handleTwitterClick}
-        onPointerEnter={handlePointerEnter}
-        onPointerLeave={handlePointerLeave}>
-        Twitter
-      </Text>
-    </Canvas>
+    <>
+      <Canvas>
+        <PerspectiveCamera
+          makeDefault
+          position={[0, 0, 40]} />
+        <group
+          position={[0, -3, 0]}>
+          <mesh
+            position={[0, 8, 0]}
+            onPointerEnter={event => event.eventObject.scale.set(1.2, 1.2, 1.2)}
+            onPointerLeave={event => event.eventObject.scale.set(1, 1, 1)}>
+            <circleGeometry args={[5, 128]} />
+            <meshBasicMaterial
+              map={iconTexture}
+              side={2} />
+          </mesh>
+          <Text
+            color={"black"}>
+            Portfolio | salieri256
+            </Text>
+          <Text
+            color={"black"}
+            position={[0, -2, 0]}
+            onClick={handleGitHubClick}
+            onPointerEnter={handlePointerEnter}
+            onPointerLeave={handlePointerLeave}>
+            GitHub
+          </Text>
+          <Text
+            color={"black"}
+            position={[0, -4, 0]}
+            onClick={handleTwitterClick}
+            onPointerEnter={handlePointerEnter}
+            onPointerLeave={handlePointerLeave}>
+            Twitter
+          </Text>
+        </group>
+      </Canvas>
+      <Loader />
+    </>
   )
 }
