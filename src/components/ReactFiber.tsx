@@ -1,4 +1,4 @@
-import { Loader, PerspectiveCamera, Text } from "@react-three/drei";
+import { Loader, OrbitControls, PerspectiveCamera, Text } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { CircleGeometry, TextureLoader } from "three";
 import myIcon from "@/assets/icon.jpg"
@@ -29,6 +29,10 @@ export default function ReactFiber() {
   return (
     <>
       <Canvas>
+        <OrbitControls
+          enableZoom={false}
+          enablePan={false}
+          enableDamping={false} />
         <PerspectiveCamera
           makeDefault
           position={[0, 0, 40]} />
