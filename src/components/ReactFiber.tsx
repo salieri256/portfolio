@@ -2,6 +2,8 @@ import { Loader, PerspectiveCamera, Text } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { CircleGeometry, TextureLoader } from "three";
 import myIcon from "@/assets/icon.jpg"
+import jetBrainsMonoRegularFont from "~/public/fonts/jet-brains-mono-regular.woff"
+import jetBrainsMonoBoldFont from "~/public/fonts/jet-brains-mono-bold.woff"
 
 export default function ReactFiber() {
   const handleGitHubClick = () => {
@@ -42,11 +44,13 @@ export default function ReactFiber() {
               side={2} />
           </mesh>
           <Text
-            color={"black"}>
+            color={"black"}
+            font={jetBrainsMonoBoldFont}>
             Portfolio | salieri256
             </Text>
           <Text
             color={"black"}
+            font={jetBrainsMonoRegularFont}
             position={[0, -2, 0]}
             onClick={handleGitHubClick}
             onPointerEnter={handlePointerEnter}
@@ -55,6 +59,7 @@ export default function ReactFiber() {
           </Text>
           <Text
             color={"black"}
+            font={jetBrainsMonoRegularFont}
             position={[0, -4, 0]}
             onClick={handleTwitterClick}
             onPointerEnter={handlePointerEnter}
