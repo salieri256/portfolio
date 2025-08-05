@@ -1,5 +1,5 @@
 ---
-import ReactFiber from '@/components/ReactFiber';
+import Home3D from '@/components/pages/Home3D';
 import BaseHead from '@/components/BaseHead.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '@/consts';
 ---
@@ -8,8 +8,15 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '@/consts';
 <html lang="ja">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<style>
+			body {
+				width: 100dvw;
+				height: 100dvh;
+				overflow: hidden;
+			}
+		</style>
 	</head>
 	<body>
-		<ReactFiber client:only="react" />
+		<Home3D client:only="react" />
 	</body>
 </html>

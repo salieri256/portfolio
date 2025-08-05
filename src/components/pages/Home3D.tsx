@@ -5,7 +5,7 @@ import myIcon from "@/assets/icon.jpg"
 import jetBrainsMonoRegularFont from "~/public/fonts/jet-brains-mono-regular.woff"
 import jetBrainsMonoBoldFont from "~/public/fonts/jet-brains-mono-bold.woff"
 
-export default function ReactFiber() {
+export default function Home3D() {
   const handleGitHubClick = () => {
     window.open("https://github.com/salieri256")
   }
