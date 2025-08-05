@@ -8,6 +8,13 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '@/consts';
 <html lang="ja">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<style>
+			body {
+				width: 100dvw;
+				height: 100dvh;
+				overflow: hidden;
+			}
+		</style>
 	</head>
 	<body>
 		<ReactFiber client:only="react" />
