@@ -6,6 +6,10 @@ import jetBrainsMonoRegularFont from "~/public/fonts/jet-brains-mono-regular.wof
 import jetBrainsMonoBoldFont from "~/public/fonts/jet-brains-mono-bold.woff"
 
 export default function Home3D() {
+  const handleBlogClick = () => {
+    window.location.href = "/blog/"
+  }
+
   const handleGitHubClick = () => {
     window.open("https://github.com/salieri256")
   }
@@ -51,11 +55,20 @@ export default function Home3D() {
             color={"black"}
             font={jetBrainsMonoBoldFont}>
             Portfolio | salieri256
-            </Text>
+          </Text>
           <Text
             color={"black"}
             font={jetBrainsMonoRegularFont}
             position={[0, -2, 0]}
+            onClick={handleBlogClick}
+            onPointerEnter={handlePointerEnter}
+            onPointerLeave={handlePointerLeave}>
+            Blog
+          </Text>
+          <Text
+            color={"black"}
+            font={jetBrainsMonoRegularFont}
+            position={[0, -4, 0]}
             onClick={handleGitHubClick}
             onPointerEnter={handlePointerEnter}
             onPointerLeave={handlePointerLeave}>
@@ -64,7 +77,7 @@ export default function Home3D() {
           <Text
             color={"black"}
             font={jetBrainsMonoRegularFont}
-            position={[0, -4, 0]}
+            position={[0, -6, 0]}
             onClick={handleTwitterClick}
             onPointerEnter={handlePointerEnter}
             onPointerLeave={handlePointerLeave}>
