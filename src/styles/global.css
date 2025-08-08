@@ -22,3 +22,9 @@
 body {
   font-family: 'Jet Brains Mono', sans-serif;
 }
+
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: top;
+}
