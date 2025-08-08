@@ -1,114 +1,112 @@
 ---
-import BaseHead from '../../components/BaseHead.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
+import BaseHead from '@/components/BaseHead.astro';
 import { getCollection } from 'astro:content';
-import FormattedDate from '../../components/FormattedDate.astro';
+import FormattedDate from '@/components/common/FormattedDate.astro';
 import { Image } from 'astro:assets';
+import ShuffledText from '@/components/common/ShuffledText'
 
 const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
+
+const today = new Date();
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-		<style>
-			main {
-				width: 960px;
-			}
-			ul {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 2rem;
-				list-style-type: none;
-				margin: 0;
-				padding: 0;
-			}
-			ul li {
-				width: calc(50% - 1rem);
-			}
-			ul li * {
-				text-decoration: none;
-				transition: 0.2s ease;
-			}
-			ul li:first-child {
-				width: 100%;
-				margin-bottom: 1rem;
-				text-align: center;
-			}
-			ul li:first-child img {
-				width: 100%;
-			}
-			ul li:first-child .title {
-				font-size: 2.369rem;
-			}
-			ul li img {
-				margin-bottom: 0.5rem;
-				border-radius: 12px;
-			}
-			ul li a {
-				display: block;
-			}
-			.title {
-				margin: 0;
-				color: rgb(var(--black));
-				line-height: 1;
-			}
-			.date {
-				margin: 0;
-				color: rgb(var(--gray));
-			}
-			ul li a:hover h4,
-			ul li a:hover .date {
-				color: rgb(var(--accent));
-			}
-			ul a:hover img {
-				box-shadow: var(--box-shadow);
-			}
-			@media (max-width: 720px) {
-				ul {
-					gap: 0.5em;
-				}
-				ul li {
-					width: 100%;
-					text-align: center;
-				}
-				ul li:first-child {
-					margin-bottom: 0;
-				}
-				ul li:first-child .title {
-					font-size: 1.563em;
-				}
-			}
-		</style>
+		<BaseHead title='GreenField.tar' description='書き溜め' />
 	</head>
+
 	<body>
-		<Header />
 		<main>
-			<section>
-				<ul>
-					{
-						posts.map((post) => (
-							<li>
-								<a href={`/blog/${post.id}/`}>
+			<div class="heading">
+				<h1><ShuffledText client:only="react">青い畑.tar</ShuffledText></h1>
+			</div>
+			<ul>
+				{
+					posts.map((post) => (
+						<li>
+							<a href={`/blog/${post.id}/`}>
+								<div class="thumb">
 									{post.data.heroImage && (
-										<Image width={720} height={360} src={post.data.heroImage} alt="" />
+										<Image width={720} src={post.data.heroImage} alt="" />
 									)}
-									<h4 class="title">{post.data.title}</h4>
-									<p class="date">
-										<FormattedDate date={post.data.pubDate} />
-									</p>
-								</a>
-							</li>
-						))
-					}
-				</ul>
-			</section>
+								</div>
+								<h4>{post.data.title}</h4>
+								<p>
+									<FormattedDate date={post.data.pubDate} />
+								</p>
+							</a>
+						</li>
+					))
+				}
+			</ul>
+			<hr />
+			<footer>
+				© {today.getFullYear()} salieri256. All rights reserved.
+			</footer>
 		</main>
-		<Footer />
 	</body>
 </html>
+
+<style>
+* {
+	color: #0423f0;
+	word-break: break-all;
+}
+
+*::selection {
+	color: white;
+	background-color: #0423f0;
+}
+
+body {
+	padding: 1rem;
+	background-color: #edeef3;
+}
+
+main {
+	border: 1px solid #0423f0;
+}
+
+.heading {
+	padding: 2rem;
+}
+
+hr {
+	border: none;
+	height: 1px;
+	background-color: #0423f0;
+}
+
+footer {
+	padding: 0.5rem 2rem;
+}
+
+ul {
+	padding: 0 2rem;
+	display: grid;
+	gap: 1rem;
+	grid-template-columns: repeat(auto-fill, minmax(min(23rem, 100%), 1fr));
+	list-style-type: none;
+}
+
+.thumb {
+	overflow: hidden;
+	scale: 1;
+	transition: all 0.3s 0s cubic-bezier(0, 0.55, 0.45, 1);
+}
+
+.thumb img {
+	transition: all 0.3s 0s cubic-bezier(0, 0.55, 0.45, 1);
+}
+
+.thumb:hover {
+	scale: 0.95;
+}
+
+.thumb:hover img {
+	scale: 1.1;
+}
+</style>
